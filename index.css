@@ -13,9 +13,13 @@ body {
 
 .header {
   width: 37.5rem;
-  height: 300px;
+  height: 167px;
   background-image: url("./assets/images/restaurant-ordering-hero-img.jpg");
-  background-position: center center;
+  background-position: center -155px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 2.5rem;
+  color: white;
 }
 
 .header__title {
