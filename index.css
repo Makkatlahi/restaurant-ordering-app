@@ -9,6 +9,7 @@
 body {
   display: flex;
   justify-content: center;
+  font-family: "Smythe", sans-serif;
 }
 
 .header {
@@ -22,5 +23,15 @@ body {
   color: white;
 }
 
+.header__title,
+.header__subtitle {
+  font-weight: 400;
+}
+
 .header__title {
+  font-size: 39px;
+}
+
+.header__subtitle {
+  font-size: 22.42px;
 }
