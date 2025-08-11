@@ -1,0 +1,22 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+}
+
+.header {
+  width: 37.5rem;
+  height: 300px;
+  background-image: url("./assets/images/restaurant-ordering-hero-img.jpg");
+  background-position: center center;
+}
+
+.header__title {
+}
