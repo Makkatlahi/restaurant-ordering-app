@@ -3,13 +3,23 @@ import menuArray from "./data.js";
 const menuItems = document.querySelector(".menu");
 
 function renderMenuItems() {
-  menuArray.map((item) => {
+  menuArray.forEach((item) => {
     let menuHtml = ``;
-    menuHtml += `<ul class="menu-items">
-                        <li class="menu-item">
-
-                        </li>
-                    </ul>
+    menuHtml = `<ul class="items">
+                    <li class="item">
+                    <span class="item__emoji">${item.emoji}</span>
+                    <div class="item__description">
+                        <h3 class="item-name">${item.name}</h3>
+                        <p class="item__ingredients">${item.ingredients}</p>
+                        <p class="item__price">$${item.price}</p>
+                    </div>
+                    <button class="add-btn">
+                    </button>
+                    </li>
+                </ul>
                     `;
+    menuItems.innerHTML += menuHtml;
   });
 }
+
+renderMenuItems();
