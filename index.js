@@ -1,6 +1,7 @@
 import menuArray from "./data.js";
 
 const menuItems = document.querySelector(".menu");
+const addBtn = document.querySelector(".add-btn");
 
 function renderMenuItems() {
   menuArray.forEach((item) => {
