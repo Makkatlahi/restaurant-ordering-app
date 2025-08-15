@@ -1,6 +1,8 @@
 import menuArray from "./data.js";
 
 const menuItems = document.querySelector(".menu");
+const itemName = document.querySelector(".item-name");
+const itemPrice = document.querySelector(".item-price");
 
 function renderMenuItems() {
   menuArray.forEach((item) => {
@@ -24,10 +26,12 @@ function renderMenuItems() {
 
 renderMenuItems();
 
-// Add event listener using event delegation
+// Add event listener on the document using event delegation
 document.addEventListener("click", (e) => {
   if (e.target.classList.contains("add-btn")) {
     // Find the closest item container to get the item data
+
+    //grab all the content from the items
     const item = e.target.closest(".item");
     const itemEmoji = item.querySelector(".item__emoji").textContent;
     const itemName = item.querySelector(".item-name").textContent;
@@ -46,15 +50,16 @@ document.addEventListener("click", (e) => {
         .insertAdjacentHTML("afterend", orderSummaryContainer);
       orderSummary = document.querySelector(".order-summary");
     }
+    // Render out a multiplier if the item was added twice or more and prevent
+    // the item from rendering as a full item description
 
     // Add the item to the order summary
     const orderSummaryHtml = `<div class="order-item">
-                                <span class="order-item__emoji">${itemEmoji}</span>
                                 <div class="order-item__description">
                                     <h2 class="order-item-name">${itemName}</h2>
-                                    <p class="order-item__ingredients">${itemIngredients}</p>
-                                    <p class="order-item__price">${itemPrice}</p>                                  
+                                    <p class="order-item__price">${itemPrice}</p>
                                 </div>
+                                <button class="complete-order-btn">Complete Order</button>
                               </div>`;
     orderSummary.insertAdjacentHTML("beforeend", orderSummaryHtml);
   }
