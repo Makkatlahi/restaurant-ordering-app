@@ -2,7 +2,7 @@ const menuArray = [
   {
     name: "Pizza",
     ingredients: ["pepperoni", "mushroom", "mozarella"],
-    uuid: uuid.v4(),
+    id: 0,
     price: 14,
     emoji: "🍕",
   },
@@ -11,14 +11,14 @@ const menuArray = [
     ingredients: ["beef", "cheese", "lettuce"],
     price: 12,
     emoji: "🍔",
-    uuid: uuid.v4(),
+    id: 1,
   },
   {
     name: "Beer",
     ingredients: ["grain, hops, yeast, water"],
     price: 12,
     emoji: "🍺",
-    uuid: uuid.v4(),
+    id: 2,
   },
 ];
 
