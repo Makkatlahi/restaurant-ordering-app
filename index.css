@@ -107,11 +107,32 @@ ul {
   font-family: "Inter", sans-serif;
 }
 
-.line-container {
+/* .line-container {
 }
 
 .vertical {
 }
 
 .horizontal {
+} */
+
+.order-summary {
+}
+
+.order-summary__heading {
+}
+
+.order-item {
+}
+
+.order-item__description {
+}
+
+.order-item__name {
+}
+
+.order-item__price {
+}
+
+.complete-order-btn {
 }

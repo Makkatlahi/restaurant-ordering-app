@@ -44,6 +44,7 @@ document.addEventListener("click", (e) => {
     if (!orderSummary) {
       const orderSummaryContainer = `<section class="order-summary">
                                        <h3 class="order-summary__heading">Your Order</h3>
+                                       <button class="complete-order-btn">Complete Order</button>
                                      </section>`;
       document
         .querySelector(".main")
@@ -52,15 +53,16 @@ document.addEventListener("click", (e) => {
     }
     // Render out a multiplier if the item was added twice or more and prevent
     // the item from rendering as a full item description
-
+    const orderSummaryHeading = document.querySelector(
+      ".order-summary__heading"
+    );
     // Add the item to the order summary
     const orderSummaryHtml = `<div class="order-item">
                                 <div class="order-item__description">
-                                    <h2 class="order-item-name">${itemName}</h2>
+                                    <h2 class="order-item__name">${itemName}</h2>
                                     <p class="order-item__price">${itemPrice}</p>
                                 </div>
-                                <button class="complete-order-btn">Complete Order</button>
                               </div>`;
-    orderSummary.insertAdjacentHTML("beforeend", orderSummaryHtml);
+    orderSummaryHeading.insertAdjacentHTML("beforeend", orderSummaryHtml);
   }
 });
