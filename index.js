@@ -13,7 +13,7 @@ function renderMenuItems() {
                         <p class="item__ingredients">${item.ingredients}</p>
                         <p class="item__price">$${item.price}</p>
                     </div>
-                    <button class="add-btn" data-id="${item.uuid}">
+                    <button class="add-btn" data-add-item="${item.uuid}">
                     </button>
                     </li>
                 </ul>
@@ -25,8 +25,10 @@ function renderMenuItems() {
 renderMenuItems();
 
 document.addEventListener("click", (e) => {
-  const itemId = e.target.dataset.id;
-  if (itemId) {
-    console.log(itemId);
+  const addItem = e.target.dataset.addItem;
+  if (addItem) {
+    console.log(addItem);
   }
 });
+
+// function handleAddItem() {}
