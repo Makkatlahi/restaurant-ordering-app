@@ -3,7 +3,9 @@ import menuArray from "./data.js";
 const menuSection = document.getElementById("menu");
 const orderSection = document.getElementById("order");
 const orderList = document.querySelector(".order__list");
+const orderTotal = document.querySelector(".total-price__amount");
 const order = [];
+let totalPrice = 0;
 
 function renderMenuItems() {
   menuArray.forEach((item) => {
@@ -47,6 +49,11 @@ function renderOrder() {
     </li>`;
     orderList.innerHTML += orderHtml;
   });
+
+  totalPrice = order.reduce((total, currentAmount) => {
+    return total + currentAmount.price;
+  }, 0);
+  orderTotal.textContent = `$${totalPrice}`;
 }
 
 renderMenuItems();
