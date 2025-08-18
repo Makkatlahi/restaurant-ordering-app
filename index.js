@@ -1,6 +1,9 @@
 import menuArray from "./data.js";
 
-const menuItems = document.querySelector(".menu");
+const menuSection = document.getElementById("menu");
+const orderSection = document.getElementById("order");
+const orderList = document.querySelector(".order__list");
+const order = [];
 
 function renderMenuItems() {
   menuArray.forEach((item) => {
@@ -13,38 +16,52 @@ function renderMenuItems() {
                         <p class="item__ingredients">${item.ingredients}</p>
                         <p class="item__price">$${item.price}</p>
                     </div>
-                    <button class="add-btn" data-add-item="${item.id}">
+                    <button class="add-btn" data-add-btn="${item.id}">
                     </button>
                     </li>
                 </ul>
                     `;
-    menuItems.innerHTML += menuHtml;
+    menuSection.innerHTML += menuHtml;
+  });
+}
+
+// to be changed to add item to list addItemToOrder()
+function renderOrder() {
+  // clear/reset the rendered html when button is clicked
+  orderList.innerHTML = "";
+  orderSection.classList.remove("hidden");
+  // iterate through the array to pick up any additions
+  // if the button has already been clicked once
+  order.forEach((item) => {
+    let orderHtml = ``;
+    orderHtml = `
+    <li class="order-item" id="${item.id}">
+    <div class="order-item__info">
+    <h2 class="order-item__name">${item.name}
+    <span><button class="remove-btn" data-remove-btn="${item.id}">remove
+    </button></span>
+    </h2>
+    <p class="order-item__price">$${item.price}</p>
+    </div>
+    
+    </li>`;
+    orderList.innerHTML += orderHtml;
   });
 }
 
 renderMenuItems();
 
 document.addEventListener("click", (e) => {
-  const addItem = e.target.closest(".item");
-  const itemName = addItem.querySelector(".item__name").textContent;
-  const itemPrice = addItem.querySelector(".item__price").textContent;
-  let orderSummaryHtml = ``;
-  if (addItem) {
-    orderSummaryHtml = `<section class="order">
-                            <h3 class="order__heading">Your Order</h3>
-                            <div class="order__items">
-                                <p class="order__items--name"> ${itemName}
-                                </p>
-                                <p class="order__items--price">${itemPrice}</p>
-                            </div>
-                            <div class="order__total">
-                                <p>Total price: <span class="order__total--price">Enter total here</span></p>
-                            </div>
-                            <button class="order__submit">Complete Order</button>
-                        </section>`;
-
-    menuItems.insertAdjacentHTML("beforeend", orderSummaryHtml);
+  if (e.target.dataset.addBtn) {
+    // iterate through menuArray and see if the
+    // id that was clicked (target id) matches with
+    // the ones in the array
+    const item = menuArray.filter(
+      (item) => item.id === parseInt(e.target.dataset.addBtn)
+    )[0];
+    // taking what was clicked and adding it to the empty array
+    order.push(item);
+    // render out the updated html
+    renderOrder(); // to be changed to addItemToOrder()
   }
 });
-
-// function handleAddItem() {}

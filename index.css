@@ -107,32 +107,52 @@ ul {
   font-family: "Inter", sans-serif;
 }
 
-/* .line-container {
+#order {
+  width: 508px;
+  margin: 0 auto;
 }
 
-.vertical {
+.hidden {
+  display: none;
 }
 
-.horizontal {
-} */
-
-.order-summary {
+.order__heading {
 }
 
-.order-summary__heading {
+.order__list {
 }
 
 .order-item {
 }
 
-.order-item__description {
+.order-item__info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .order-item__name {
 }
 
-.order-item__price {
+.remove-btn {
+  outline: none;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  color: rgba(187, 187, 187, 1);
+  font-weight: 600;
+  margin-left: 13px;
 }
 
-.complete-order-btn {
+.order-item__price {
+  font-size: 20px;
+}
+
+.total-price {
+}
+
+.total-price__amount {
+}
+
+.order__button {
 }
