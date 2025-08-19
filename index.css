@@ -16,6 +16,10 @@ ul {
   list-style: none;
 }
 
+/* .container {
+  position: relative;
+} */
+
 .header {
   width: 37.5rem;
   height: 167px;
@@ -43,7 +47,7 @@ ul {
 .main {
 }
 
-.menu {
+#menu {
   display: flex;
   flex-direction: column;
   margin-top: 67px;
@@ -109,7 +113,8 @@ ul {
 
 #order {
   width: 508px;
-  margin: 0 auto;
+  margin: 45px auto;
+  padding-bottom: 5rem;
 }
 
 .hidden {
@@ -118,6 +123,7 @@ ul {
 
 .order__heading {
   text-align: center;
+  margin-bottom: 34px;
 }
 
 .order__list {
@@ -130,12 +136,12 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-bottom: 22px;
 }
 
 .order-item__name {
   font-size: 28px;
   font-weight: 400;
-  margin-bottom: 22px;
 }
 
 .remove-btn {
@@ -175,4 +181,56 @@ ul {
   font-weight: 700;
   font-size: 16px;
   border-radius: 3px;
+  margin-top: 53px;
+  cursor: pointer;
+}
+
+#pay-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: white;
+  box-shadow: 0px 0px 20px 2px #867e7e;
+  border-radius: 1.3px;
+  color: black;
+  width: 524px;
+  height: 542px;
+  margin: auto;
+  padding: 3rem;
+}
+
+.blur {
+  opacity: 0.7;
+}
+
+.modal-heading {
+  font-weight: 700;
+  font-size: 24px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-align: center;
+}
+
+.payment-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+
+.input-field {
+  padding: 1rem;
+  margin: 23.22px 0;
+  font-size: 20px;
+}
+
+.pay-btn {
+  background-color: rgba(22, 219, 153, 1);
+  border: none;
+  color: rgba(255, 255, 255, 1);
+  padding: 1.2rem;
+  font-weight: 700;
+  font-size: 20px;
+  border-radius: 3px;
+  margin-top: 30px;
 }

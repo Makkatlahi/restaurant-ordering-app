@@ -1,10 +1,18 @@
 import menuArray from "./data.js";
 
+// containers
 const menuSection = document.getElementById("menu");
 const orderSection = document.getElementById("order");
+const payModal = document.getElementById("pay-modal");
+const container = document.getElementById("container");
+
+// elements
 const orderList = document.querySelector(".order__list");
 const orderTotal = document.querySelector(".total-price__amount");
-const order = [];
+const orderButton = document.querySelector(".order__button");
+
+// variables
+let order = [];
 let totalPrice = 0;
 
 function renderMenuItems() {
@@ -56,6 +64,21 @@ function renderOrder() {
   orderTotal.textContent = `$${totalPrice}`;
 }
 
+function renderModal() {
+  const payModalHtml = `<h3 class="modal-heading">Enter card details</h3>
+                        <form class="payment-form">
+                            <input id="form-name" class="input-field" type="text" placeholder="Enter your name" required/>
+                            <input id="form-card" class="input-field" type="number" placeholder="Enter card number"required/>
+                            <input id="form-cvv" class="input-field" type="number" placeholder="Enter CVV" required/>
+                            <button type="submit" class="pay-btn">Pay</button>
+                        </form>`;
+
+  payModal.classList.remove("hidden");
+  container.classList.add("blur");
+
+  payModal.innerHTML = payModalHtml;
+}
+
 renderMenuItems();
 
 document.addEventListener("click", (e) => {
@@ -70,5 +93,16 @@ document.addEventListener("click", (e) => {
     order.push(item);
     // render out the updated html
     renderOrder(); // to be changed to addItemToOrder()
+  } else if (e.target.dataset.removeBtn) {
+    const item = menuArray.filter(
+      (item) => item.id === parseInt(e.target.dataset.removeBtn)
+    )[0];
+    // return a new array without the item that was clicked for
+    // removal
+    order = order.filter((orderItem) => orderItem.id !== item.id);
+
+    order.length === 0 ? orderSection.classList.add("hidden") : renderOrder();
+  } else if (e.target.dataset.order) {
+    renderModal();
   }
 });
