@@ -19,18 +19,18 @@ function renderMenuItems() {
   menuArray.forEach((item) => {
     let menuHtml = ``;
     menuHtml = `<ul class="items">
-                    <li class="item" id="${item.id}">
-                    <span class="item__emoji">${item.emoji}</span>
-                    <div class="item__description">
-                        <h2 class="item__name">${item.name}</h2>
-                        <p class="item__ingredients">${item.ingredients}</p>
-                        <p class="item__price">$${item.price}</p>
-                    </div>
-                    <button class="add-btn" data-add-btn="${item.id}">
-                    </button>
-                    </li>
-                </ul>
-                    `;
+    <li class="item" id="${item.id}">
+    <span class="item__emoji">${item.emoji}</span>
+    <div class="item__description">
+    <h2 class="item__name">${item.name}</h2>
+    <p class="item__ingredients">${item.ingredients}</p>
+    <p class="item__price">$${item.price}</p>
+    </div>
+    <button class="add-btn" data-add-btn="${item.id}">
+    </button>
+    </li>
+    </ul>
+    `;
     menuSection.innerHTML += menuHtml;
   });
 }
@@ -45,16 +45,17 @@ function renderOrder() {
   order.forEach((item) => {
     let orderHtml = ``;
     orderHtml = `
-    <li class="order-item" id="${item.id}">
-    <div class="order-item__info">
-    <h2 class="order-item__name">${item.name}
-    <span><button class="remove-btn" data-remove-btn="${item.id}">remove
-    </button></span>
-    </h2>
-    <p class="order-item__price">$${item.price}</p>
-    </div>
-    
-    </li>`;
+                <li class="order-item" id="${item.id}">
+                    <div class="order-item__info">
+                        <h2 class="order-item__name">${item.name}
+                        <span>
+                          <button class="remove-btn" data-remove-btn="${item.id}">remove
+                          </button>
+                        </span>
+                        </h2>
+                        <p class="order-item__price">$${item.price}</p>
+                    </div>
+                </li>`;
     orderList.innerHTML += orderHtml;
   });
 
@@ -67,9 +68,9 @@ function renderOrder() {
 function renderModal() {
   const payModalHtml = `<h3 class="modal-heading">Enter card details</h3>
                         <form class="payment-form">
-                            <input id="form-name" class="input-field" type="text" placeholder="Enter your name" required/>
-                            <input id="form-card" class="input-field" type="number" placeholder="Enter card number"required/>
-                            <input id="form-cvv" class="input-field" type="number" placeholder="Enter CVV" required/>
+                            <input id="form-name" class="input-field" type="text" placeholder="Enter your name" name="name" required/>
+                            <input id="form-card" class="input-field" type="text" placeholder="Enter card number" name="card-number" required/>
+                            <input id="form-cvv" class="input-field" type="text" placeholder="Enter CVV" required/>
                             <button type="submit" class="pay-btn">Pay</button>
                         </form>`;
 
@@ -77,6 +78,13 @@ function renderModal() {
   container.classList.add("blur");
 
   payModal.innerHTML = payModalHtml;
+}
+
+function renderConfirmationMessage(name) {
+  payModal.classList.add("hidden");
+  const confirmationHtml = `<p> Thanks, ${name}! Your order is on its way</p>`;
+  orderSection.innerHTML = "";
+  orderSection.innerHTML = confirmationHtml;
 }
 
 renderMenuItems();
@@ -104,5 +112,11 @@ document.addEventListener("click", (e) => {
     order.length === 0 ? orderSection.classList.add("hidden") : renderOrder();
   } else if (e.target.dataset.order) {
     renderModal();
+  } else if (e.target.classList.contains("pay-btn")) {
+    e.preventDefault();
+    const paymentForm = document.querySelector(".payment-form");
+    const paymentFormData = new FormData(paymentForm);
+    const name = paymentFormData.get("name");
+    renderConfirmationMessage(name);
   }
 });
