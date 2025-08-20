@@ -9,7 +9,6 @@ const container = document.getElementById("container");
 // elements
 const orderList = document.querySelector(".order__list");
 const orderTotal = document.querySelector(".total-price__amount");
-const orderButton = document.querySelector(".order__button");
 
 // variables
 let order = [];
@@ -35,7 +34,6 @@ function renderMenuItems() {
   });
 }
 
-// to be changed to add item to list addItemToOrder()
 function renderOrder() {
   // clear/reset the rendered html when button is clicked
   orderList.innerHTML = "";
