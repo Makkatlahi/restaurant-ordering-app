@@ -81,10 +81,15 @@ function renderModal() {
 }
 
 function renderConfirmationMessage(name) {
+  console.log("renderConfirmationMessage called with name: ", name);
   payModal.classList.add("hidden");
-  const confirmationHtml = `<p> Thanks, ${name}! Your order is on its way</p>`;
+  orderSection.classList.remove("hidden");
+  const confirmationHtml = `<section class="confirmation">
+                              <p> Thanks, ${name}! Your order is on its way!</p>
+                            </section>`;
   orderSection.innerHTML = "";
   orderSection.innerHTML = confirmationHtml;
+  container.classList.remove("blur");
 }
 
 renderMenuItems();
@@ -108,13 +113,16 @@ document.addEventListener("click", (e) => {
     // return a new array without the item that was clicked for
     // removal
     order = order.filter((orderItem) => orderItem.id !== item.id);
-
     order.length === 0 ? orderSection.classList.add("hidden") : renderOrder();
   } else if (e.target.dataset.order) {
     renderModal();
-  } else if (e.target.classList.contains("pay-btn")) {
+  }
+});
+
+document.addEventListener("submit", (e) => {
+  const paymentForm = document.querySelector(".payment-form");
+  if (e.target.classList.contains("payment-form")) {
     e.preventDefault();
-    const paymentForm = document.querySelector(".payment-form");
     const paymentFormData = new FormData(paymentForm);
     const name = paymentFormData.get("name");
     renderConfirmationMessage(name);
